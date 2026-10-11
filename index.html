@@ -2,6 +2,10 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F5R5RTPLHG"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-F5R5RTPLHG');
+// 記錄每份考卷與解答表單的點擊（GA4 報表：事件 open_paper，參數 paper）
+document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a)return;if(a.classList.contains('sc'))gtag('event','open_paper',{paper:a.title||a.textContent,transport_type:'beacon'});else if(a.href.includes('docs.google.com/forms'))gtag('event','open_answer_form',{transport_type:'beacon'})});</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>新竹高中化學段考題庫｜竹中、竹女、竹北、實驗等段考考古題 PDF</title>
 <meta name="description" content="新竹地區高中化學段考考古題免費下載：竹中、竹女、竹北（陽明交大附中）、建功、六家、實驗、竹商、竹東等校，112～114 學年高一、高二、高三各次段考題目 PDF，寫完可免費索取完整詳解。周逸化學整理。">
