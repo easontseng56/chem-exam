@@ -40,6 +40,7 @@ h1{font-family:var(--display);font-weight:900;font-size:clamp(26px,5vw,36px);lin
 .filters{display:flex;flex-direction:column;gap:8px}
 .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .row span{font-size:13px;color:var(--muted);width:2.5em}
+.row .sep{font-size:12px;font-style:normal;color:var(--muted);padding-left:10px;margin-left:4px;border-left:1px solid var(--line)}
 .chip{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:4px 12px;border-radius:999px;cursor:pointer}
 .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
 .chip:focus-visible,.sc:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -145,7 +146,7 @@ chips('fsem','sem',['上','下']);
 chips('fex','ex',['第一次','第二次','第三次']);
 chips('fg','g',['高一','高二','高三']);
 const cnt={};DATA.forEach(d=>cnt[d.sc]=(cnt[d.sc]||0)+1);
-chips('fs','s',Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]||a.localeCompare(b,'zh-Hant')));
+const HC=new Set(['竹中','竹女','竹北','建功','六家','實驗','竹商','竹東','磐石','光復','義民','香山','成德','曙光','附中數資']);const bySc=(a,b)=>cnt[b]-cnt[a]||a.localeCompare(b,'zh-Hant');const scH=Object.keys(cnt).filter(x=>HC.has(x)).sort(bySc),scO=Object.keys(cnt).filter(x=>!HC.has(x)).sort(bySc);chips('fs','s',[...scH,...scO]);if(scH.length&&scO.length){const fsb=document.getElementById('fs'),first=[...fsb.querySelectorAll('.chip')][scH.length+1];const sep=document.createElement('i');sep.className='sep';sep.textContent='其他地區';fsb.insertBefore(sep,first)}
 function render(){
   const list=document.getElementById('list');list.innerHTML='';
   const rows=DATA.filter(d=>(!st.y||d.y===st.y)&&(!st.sem||d.s===(st.sem==='上'?'一':'二')));
